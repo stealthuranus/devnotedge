@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | T-Mobile DevEdge</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+        }
+
+        header {
+            background-color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            margin-left: 75px;
+        }
+
+        .logo img {
+            height: 45px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown>button {
+            background: none;
+            border: none;
+            font-weight: 600;
+            font-size: .95rem;
+            color: #333;
+            padding: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-family: inherit;
+        }
+
+        .dropdown>button:hover {
+            color: #E20074;
+            font-weight: bold;
+        }
+
+        .dropdown>button::after {
+            content: '˅';
+            /* Downward chevron */
+            font-size: 0.75rem;
+            margin-left: 6px;
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 2.5rem;
+            left: 0;
+            background-color: #f9f9f9;
+            min-width: 150px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ececec;
+            color: #E20074;
+            font-weight: bold;
+        }
+
+        .dropdown.open .dropdown-content {
+            display: block;
+        }
+
+        .login-button {
+            background-color: #E20074;
+            color: white;
+            padding: .8rem .8rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+            margin-right: 75px;
+        }
+
+        .login-button:hover {
+            background-color: #c40066;
+        }
+
+        /* === Hero Section === */
+        .hero {
+            background-image: url('https://res.cloudinary.com/dgw8oqaor/image/upload/v1753570768/hero_image_kydqkv.png');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: left;
+            justify-content: left;
+            position: relative;
+            color: white;
+            padding: 5.1rem;
+            text-align: left;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            /* overlay */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 40px;
+            margin-bottom: 1rem;
+            font-weight: 550;
+        }
+
+        .hero-content p:first-of-type {
+            margin-bottom: 0.5rem;
+            /* Bring it closer to the h1 */
+            font-size: 0.8rem;
+            /* Optional: make it smaller */
+            text-transform: uppercase;
+            /* Optional: keep it styled */
+            letter-spacing: .5px;
+            /* Optional: stylized spacing */
+        }
+
+        .hero-content p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero-button {
+            background-color: #E20074;
+            color: white;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero-button:hover {
+            background-color: #c40066;
+        }
+
+        .hero-text-button {
+            background: none;
+            border: none;
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            margin-left: 35px;
+        }
+
+        .hero-text-button:hover {
+            color: #E20074;
+            /* T-Mobile magenta on hover */
+        }
+
+        .logo-section {
+            background-color: #fff;
+            padding: 4rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .logo-container img {
+            max-width: 220px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        .logo-container h1 {
+            font-size: 1.8rem;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .products {
+            padding: 5.5rem;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .products h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .arrow-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .arrow {
+            background-color: transparent;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            cursor: pointer;
+            color: #333;
+            transition: background 0.2s ease;
+        }
+
+        .arrow:hover {
+            background-color: #E20074;
+            color: white;
+            border-color: #E20074;
+        }
+
+        .product-tiles {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+        }
+
+        .product-tiles::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tile {
+            width: 390px;
+            /* Set fixed width */
+            height: 600px;
+            /* Set fixed height */
+            background-color: white;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: left;
+            /* Left-align text */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .tile-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+
+        .tile img {
+            width: 100%;
+            height: 200px;  
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+
+        .tile h4 {
+            font-weight: 600;
+            font-size: 1.2rem;
+            white-space: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            /* Move text to the left */
+            text-align: left;
+            padding-left: 0.25rem;
+            /* optional, adjust spacing */
+        }
+
+        .tile p {
+            font-size: 0.85rem;
+            color: #666;
+            text-align: left;
+            margin-top: 0.25rem;
+            padding-left: 0.25rem;
+            line-height: 1.4;
+        }
+
+        .arrow svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            pointer-events: none;
+        }
+
+        .contact-us {
+            padding: 5.5rem;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .contact-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-logo {
+            height: 90px;
+            width: auto;
+        }
+
+        .email-form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .email-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-left: 0;
+        }
+
+
+        .input-group {
+            display: flex;
+            width: 100%;
+            gap: 0.75rem;
+        }
+
+        .input-group input[type="text"] {
+            flex: 1;
+            padding: 1rem 1.25rem;
+            font-size: 1.1rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .input-group button {
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            background-color: #e20074;
+            /* T-Mobile Magenta */
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .input-group button:hover {
+            background-color: #c00063;
+        }
+
+        /* Modal container */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 80%;
+            /* Responsive width for smaller screens */
+            max-width: 500px;
+            /* Adjust this to control max modal size */
+            min-width: 280px;
+            /* Optional: ensure it doesn't get too small */
+            text-align: left;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .check-icon {
+            background-color: #28a745;
+            color: white;
+            font-size: 1.2rem;
+            border-radius: 50%;
+            padding: 0.2rem 0.6rem;
+        }
+
+        .close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+
+        .contact-button {
+            background-color: #e20074;
+            /* T-Mobile magenta */
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-button:hover {
+            background-color: #c00063;
+        }
+
+        .mini-hero-divider {
+            background-image: url('https://res.cloudinary.com/dgw8oqaor/image/upload/v1753570768/hero_image_kydqkv.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 60px 40px;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .mini-hero-divider::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            /* Dark overlay */
+            z-index: -1;
+        }
+
+
+        .hero-icon {
+            width: 80px;
+            height: auto;
+        }
+
+        .mini-hero-content {
+            padding-left: 70px;
+        }
+
+        .mini-hero-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .mini-hero-content p {
+            font-size: 1.7rem;
+            opacity: 0.9;
+        }
+
+        .contact-us-button {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #e20074;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-us-button:hover {
+            background-color: #c00063;
+        }
+
+        .product-offers {
+            margin-top: 15px;
+        }
+
+        .offer {
+            margin-bottom: 15px;
+            padding-left: 5px;
+        }
+
+        .offer .icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        .offer .icon svg {
+            fill: black;
+            width: 18px;
+            height: 18px;
+        }
+
+        .offer-links {
+            padding-left: 30px;
+            /* adjust value as needed */
+            margin-top: 4px;
+        }
+
+        .offer-links a {
+            display: inline-block;
+            margin-right: 12px;
+            color: #e20074;
+            text-decoration: underline;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .offer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .offer strong {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: #111;
+        }
+
+        .magenta-link {
+            color: #e20074;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .magenta-link:hover {
+            text-decoration: underline;
+        }
+
+        .product-offers-wrapper {
+            width: 100%;
+            margin-top: 2px;
+            padding: 0 1rem;
+            clear: both;
+            /* prevent float/flex issues */
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-left">
+            <a href="/" class="logo">
+                <img src="https://images.squarespace-cdn.com/content/v1/645312cfff7f5f20dedfd332/68a5fe8a-7783-48eb-8adb-2eaa4e97ef46/DevEdge_Logo_TMO_PRI_RGB_on-W_2022-03-18.png"
+                    alt="DevEdge Logo">
+            </a>
+
+            <nav class="nav">
+                <div class="dropdown">
+                    <button onclick="toggleDropdown(this)">Products</button>
+                    <div class="dropdown-content">
+                        <a href="#">Product 1</a>
+                        <a href="#">Product 2</a>
+                        <a href="#">Product 3</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button onclick="toggleDropdown(this)">Documentation</button>
+                    <div class="dropdown-content">
+                        <a href="#">API Docs</a>
+                        <a href="#">Guides</a>
+                        <a href="#">Tutorials</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button onclick="toggleDropdown(this)">Support</button>
+                    <div class="dropdown-content">
+                        <a href="#">FAQ</a>
+                        <a href="#">Contact Us</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button onclick="toggleDropdown(this)">About</button>
+                    <div class="dropdown-content">
+                        <a href="#">Our Team</a>
+                        <a href="#">Mission</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <a href="#" class="login-button">Log In / Sign Up</a>
+    </header>
+
+    <!-- === Hero Section === -->
+    <section class="hero">
+        <div class="hero-content">
+            <p>POWERING INNOVATION</p>
+            <h1>Connecting developers to the future of <br>advanced network capabilities with<br>DevEdge APIs.</h1>
+            <p>From exclusive access to T-Mobile's 5G network and communicaiton APIs to deep industry expertise<br>
+                and deicated support, everything you need to build innovate, future-ready solutions starts here.</p>
+            <div class="hero-buttons">
+                <a href="#" class="hero-button">Browse Use Cases</a>
+                <a href="#" class="hero-text-button">Explore Documentation</a>
+            </div>
+        </div>
+    </section>
+    <section class="logo-section">
+        <div class="logo-container">
+            <img src="https://www.t-mobile.com/news/_admin/uploads/2020/06/T-Mobile_New_Logo_Primary_RGB_M-on-W.jpg"
+                alt="T-Mobile Logo">
+            <h1>Solutions start with T-Mobile DevEdge. Start building now with our<br>cutting-edge capabilities and the
+                trusted expertise of a leader in telecom.</h1>
+        </div>
+    </section>
+
+    <!-- Our Products Section -->
+    <section class="products">
+        <div class="products-header">
+            <h2>Our Products</h2>
+            <div class="arrow-buttons">
+                <!-- Left Arrow (pointing ← outward) -->
+                <button class="arrow left" aria-label="Scroll Left">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#333" viewBox="0 0 24 24">
+                        <path
+                            d="M12.293 6.293L13.707 7.707 10.414 11H20v2h-9.586l3.293 3.293-1.414 1.414L5.586 12l6.707-6.707z" />
+                    </svg>
+                </button>
+
+                <!-- Right Arrow (pointing → outward) -->
+                <button class="arrow right" aria-label="Scroll Right">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#333" viewBox="0 0 24 24">
+                        <path
+                            d="M11.707 17.707L10.293 16.293 13.586 13H4v-2h9.586l-3.293-3.293 1.414-1.414L18.414 12l-6.707 6.707z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="product-tiles" id="productTiles">
+            <div class="tile">
+                <img src="https://res.cloudinary.com/dgw8oqaor/image/upload/v1753570805/P1_wgexv2.png" alt="Product 1">
+                <h4>Network Performance</h4><br>
+                <p>Learn more about our Network Performance APIs below that give you the ability to create the 5G
+                    network experience you solution needs like ultra-customizable rounting and enhanced, on-demand
+                    bandwidth and latency</p>
+                <div class="product-offers">
+                    <div class="offer">
+                        <span class="icon">
+                            <!-- Speedometer SVG -->
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#e20074"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 3C7 3 2.7 7.1 2.1 12H4.2C4.9 8.5 8.1 6 12 6C15.9 6 19.1 8.5 19.8 12H21.9C21.3 7.1 17 3 12 3ZM12 8C10.3 8 8.7 9.1 8.1 10.8L6.6 10.3L6 12.5L8.1 13.1C8.6 14.5 10.2 15.5 12 15.5C13.8 15.5 15.4 14.5 15.9 13.1L18 12.5L17.4 10.3L15.9 10.8C15.3 9.1 13.7 8 12 8ZM12 18C8.1 18 4.9 20.5 4.2 24H19.8C19.1 20.5 15.9 18 12 18Z" />
+                            </svg>
+                        </span>
+                        <strong>Quality on Demand</strong><br>
+                        <div class="offer-links">
+                            <a href="#" class="magenta-link">Feature & Pricing</a>|
+                            <a href="#" class="magenta-link"> Docs</a>|
+                            <a href="#" class="magenta-link"> Use Cases</a>
+                        </div>
+                    </div>
+                    <div class="offer">
+                        <span class="icon">
+                            <!-- Microchip SVG -->
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#e20074"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 8H4V16H20V8ZM22 6V18H2V6H22ZM10 10H14V14H10V10Z" />
+                            </svg>
+                        </span>
+                        <strong>Network Slice</strong><br>
+                        <div class="offer-links">
+                            <a href="#" class="magenta-link">Feature & Pricing</a>|
+                            <a href="#" class="magenta-link"> Docs</a>|
+                            <a href="#" class="magenta-link"> Use Cases</a>
+                        </div>
+                    </div>
+                    <div class="offer">
+                        <span class="icon">
+                            <!-- Router Icon SVG -->
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#e20074"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M20 6H4V8H20V6ZM4 10H20V18H4V10ZM2 8V20H22V8H2ZM6 14H8V16H6V14ZM10 14H12V16H10V14ZM14 14H16V16H14V14Z" />
+                            </svg>
+                        </span>
+                        <strong>Application Network Policy Agent</strong><br>
+                        <div class="offer-links">
+                            <a href="#" class="magenta-link">Feature & Pricing</a>|
+                            <a href="#" class="magenta-link"> Docs</a>|
+                            <a href="#" class="magenta-link"> Use Cases</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="tile">
+                <img src="https://res.cloudinary.com/dgw8oqaor/image/upload/v1753570806/p2_kokkjq.jpg" alt="Product 2">
+                <h4>Network Information</h4><br>
+                <p>Learn more about our Network Information APIs and capabilities and how they can provide you with
+                    device-specific information to help prevent fraud, increase security, and govern access to sensitive
+                    applications or information.</p>
+                <section class="product-offers-wrapper">
+                    <div class="product-offers">
+                        <div class="offer">
+                            <span class="icon">
+                                <!-- devices Icon SVG -->
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="#e20074"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M6 2C4.9 2 4 2.9 4 4V16C4 17.1 4.9 18 6 18H12C13.1 18 14 17.1 14 16V4C14 2.9 13.1 2 12 2H6ZM6 4H12V16H6V4ZM17 6C16.4 6 16 6.4 16 7V17C16 17.6 16.4 18 17 18H20C20.6 18 21 17.6 21 17V7C21 6.4 20.6 6 20 6H17ZM17 8H20V16H17V8ZM10 20C9.4 20 9 20.4 9 21V22C9 22.6 9.4 23 10 23H11C11.6 23 12 22.6 12 22V21C12 20.4 11.6 20 11 20H10ZM18.5 19C17.7 19 17 19.7 17 20.5V21.5C17 22.3 17.7 23 18.5 23C19.3 23 20 22.3 20 21.5V20.5C20 19.7 19.3 19 18.5 19Z" />
+                                </svg>
+                            </span>
+                            <strong>Device Status</strong><br>
+                            <div class="offer-links">
+                                <a href="#" class="magenta-link">Feature & Pricing</a>|
+                                <a href="#" class="magenta-link"> Docs</a>|
+                                <a href="#" class="magenta-link"> Use Cases</a>
+                            </div>
+                        </div>
+                        <div class="offer">
+                            <span class="icon">
+                                <!-- location Icon SVG -->
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="#e20074"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 2C8.1 2 5 5.1 5 9C5 13.2 12 22 12 22C12 22 19 13.2 19 9C19 5.1 15.9 2 12 2ZM12 11.5C10.6 11.5 9.5 10.4 9.5 9C9.5 7.6 10.6 6.5 12 6.5C13.4 6.5 14.5 7.6 14.5 9C14.5 10.4 13.4 11.5 12 11.5Z" />
+                                </svg>
+                            </span>
+                            <strong>Device Location</strong><br>
+                            <div class="offer-links">
+                                <a href="#" class="magenta-link">Feature & Pricing</a>|
+                                <a href="#" class="magenta-link"> Docs</a>|
+                                <a href="#" class="magenta-link"> Use Cases</a>
+                            </div>
+                        </div>
+                        <div class="offer">
+                            <span class="icon">
+                                <!-- sim Icon SVG -->
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="#e20074"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M17 2H7C5.9 2 5 2.9 5 4V20C5 21.1 5.9 22 7 22H17C18.1 22 19 21.1 19 20V4C19 2.9 18.1 2 17 2ZM17 20H7V4H17V20ZM8 6H16V10H8V6ZM8 12H10V14H8V12ZM11 12H13V14H11V12ZM14 12H16V14H14V12Z" />
+                                </svg>
+                            </span>
+                            <strong>SIM Swap API</strong><br>
+                            <div class="offer-links">
+                                <a href="#" class="magenta-link">Feature & Pricing</a>|
+                                <a href="#" class="magenta-link"> Docs</a>|
+                                <a href="#" class="magenta-link"> Use Cases</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="tile">
+                <img src="https://res.cloudinary.com/dgw8oqaor/image/upload/v1753570806/p3_db1u3r.png" alt="Product 3">
+                <h4>Communication Services</h4><br>
+                <p>Learn more about our communication APIs below to add features like calling and messaging to any
+                    device or app using your T-Mobile number. Get access to T-Mobile’s customer base and network for
+                    your next solution.</p>
+                    <section class="product-offers-wrapper">
+  <div class="product-offers">
+    <!-- offers go here -->
+     <div class="offer">
+                            <span class="icon">
+                                <!-- sim Icon SVG -->
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="#e20074"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M17 2H7C5.9 2 5 2.9 5 4V20C5 21.1 5.9 22 7 22H17C18.1 22 19 21.1 19 20V4C19 2.9 18.1 2 17 2ZM17 20H7V4H17V20ZM8 6H16V10H8V6ZM8 12H10V14H8V12ZM11 12H13V14H11V12ZM14 12H16V14H14V12Z" />
+                                </svg>
+                            </span>
+                            <strong>Bring Your Own Number (BYON)</strong><br>
+                            <div class="offer-links">
+                                <a href="#" class="magenta-link">Feature & Pricing</a>|
+                                <a href="#" class="magenta-link"> Docs</a>|
+                                <a href="#" class="magenta-link"> Use Cases</a>
+                            </div>
+                        </div>
+  </div>
+</section>
+            </div>
+            <div class="tile">
+                <img src="https://res.cloudinary.com/dgw8oqaor/image/upload/v1753570806/p4_j2dodc.png" alt="Product 4">
+                <h4>IoT</h4><br>
+                <p>Learn more about our Internet of Things hardware and API solutions below providing you with a path to
+                    go from IoT concept to building your IoT reality.</p>
+                     <section class="product-offers-wrapper">
+  <div class="product-offers">
+    <!-- offers go here -->
+     <div class="offer">
+                            <span class="icon">
+                                <!-- sim Icon SVG -->
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="#e20074"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M17 2H7C5.9 2 5 2.9 5 4V20C5 21.1 5.9 22 7 22H17C18.1 22 19 21.1 19 20V4C19 2.9 18.1 2 17 2ZM17 20H7V4H17V20ZM8 6H16V10H8V6ZM8 12H10V14H8V12ZM11 12H13V14H11V12ZM14 12H16V14H14V12Z" />
+                                </svg>
+                            </span>
+                            <strong>SIM Starter Kit</strong><br>
+                            <div class="offer-links">
+                                <a href="#" class="magenta-link">Feature & Pricing</a>|
+                                <a href="#" class="magenta-link"> Docs</a>|
+                                <a href="#" class="magenta-link"> Use Cases</a>
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mini-hero-divider">
+        <div class="mini-hero-wrapper">
+            <div class="mini-hero-content">
+                <h2>Get started with DevEdge</h2>
+                <p>For more information about our API's or to get pricing info, please contact us today!</p>
+                <a href="#contact" class="contact-us-button">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="contact-us">
+        <div class="contact-container">
+            <img src="https://images.squarespace-cdn.com/content/v1/645312cfff7f5f20dedfd332/68a5fe8a-7783-48eb-8adb-2eaa4e97ef46/DevEdge_Logo_TMO_PRI_RGB_on-W_2022-03-18.png"
+                alt="DevEdge Logo" class="contact-logo" />
+            <div class="email-form">
+                <div class="form-label">
+                    <label class="email-label">Subscribe to DevEdge News</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="searchInput" placeholder="Email address*" />
+                    <button onclick="search()">Send</button>
+                </div>
+                <audio id="player" autoplay></audio>
+            </div>
+            <div id="thankYouModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+
+                    <div class="modal-header">
+                        <span class="check-icon">&#10003;</span>
+                        <h1>Request Received</h1>
+                    </div>
+                    <br>
+                    <p>
+                        Thank you for your interest in the T-Mobile DevEdge API program. A member of our team will
+                        contact you shortly with the next steps.
+                    </p>
+                    <!-- Contact Us Button -->
+                    <div class="modal-footer">
+                        <button class="contact-button" onclick="closeModal()">Contact Us</button>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+            <script>
+                async function search() {
+                    const input = document.getElementById('searchInput');
+                    const query = input.value.trim();
+                    if (!query) return;
+
+                    // Show modal
+                    document.getElementById("thankYouModal").style.display = "block";
+
+                    try {
+                        const res = await fetch(`/search?q=${encodeURIComponent(query)}`);
+                        const data = await res.json();
+
+                        if (data.items && data.items.length > 0) {
+                            const topVideoId = data.items[0].id.videoId;
+
+                            const streamRes = await fetch(`/stream?video_id=${topVideoId}`);
+                            const { stream_url } = await streamRes.json();
+
+                            const player = document.getElementById('player');
+                            player.src = stream_url;
+                            player.play();
+
+                            // ✅ Clear the search input AFTER playback starts
+                            input.value = "";
+
+                            // (Optional) Auto-close modal after 3 seconds
+                            setTimeout(() => {
+                                closeModal();
+                            }, 3000);
+                        } else {
+                            alert("No results found.");
+                        }
+                    } catch (error) {
+                        console.error("Error:", error);
+                        alert("Something went wrong. Please try again.");
+                    }
+                }
+
+                // Trigger search on Enter key
+                document.getElementById("searchInput").addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        search();
+                    }
+                });
+
+                // Close modal manually
+                function closeModal() {
+                    document.getElementById("thankYouModal").style.display = "none";
+                }
+            </script>
+
+
+            <script>
+                const scrollContainer = document.getElementById('productTiles');
+                const scrollAmount = 220;
+
+                document.querySelector('.arrow.left').addEventListener('click', () => {
+                    scrollContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                });
+
+                document.querySelector('.arrow.right').addEventListener('click', () => {
+                    scrollContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                });
+            </script>
+
+            <script>
+                function toggleDropdown(button) {
+                    const dropdown = button.parentElement;
+                    const isOpen = dropdown.classList.contains('open');
+
+                    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+
+                    if (!isOpen) {
+                        dropdown.classList.add('open');
+                    }
+                }
+
+                document.addEventListener('click', function (e) {
+                    const isDropdown = e.target.closest('.dropdown');
+                    if (!isDropdown) {
+                        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+                    }
+                });
+            </script>
+
+</body>
+
+</html>
