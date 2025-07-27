@@ -34,7 +34,8 @@ def get_stream_url():
         'quiet': True,
         'skip_download': True,
         'format': 'bestaudio[ext=m4a]/bestaudio/best',
-        'noplaylist': True
+        'noplaylist': True,
+        'cookiefile': 'cookie.txt'
     }
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
