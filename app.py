@@ -27,6 +27,7 @@ def search_youtube():
 
 @app.route('/stream')
 def get_stream_url():
+    print("🔍 Received request for /stream")
     video_id = request.args.get('video_id')
     video_url = f"https://www.youtube.com/watch?v={video_id}"
 
@@ -43,4 +44,4 @@ def get_stream_url():
         return jsonify({'stream_url': info['url']})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, use_reloader=False)
