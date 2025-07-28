@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-import yt_dlp
+import yt_dlp, os
 import requests
 
 app = Flask(__name__)
@@ -36,7 +36,7 @@ def get_stream_url():
         'skip_download': True,
         'format': 'bestaudio[ext=m4a]/bestaudio/best',
         'noplaylist': True,
-        'cookiefile': 'cookie.txt'
+        'cookiefile': 'cookies.txt'
     }
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -45,3 +45,5 @@ def get_stream_url():
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=False)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
