@@ -4,7 +4,7 @@ import browser_cookie3
 cookies = browser_cookie3.brave(domain_name='youtube.com')
 
 # Save cookies in Netscape format (compatible with yt-dlp)
-with open("cookies.txt", "w") as f:
+with open("cookie.txt", "w") as f:
     f.write("# Netscape HTTP Cookie File\n")
     for cookie in cookies:
         f.write(
